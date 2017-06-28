@@ -38,7 +38,7 @@ func loadFile(fileName string) (string, error) {
 }
 
 func loadPosts() []Post {
-	bytes, _ := ioutil.ReadFile("posts.json")
+	bytes, _ := ioutil.ReadFile("Model/posts.json")
 	var posts []Post
 	json.Unmarshal(bytes, &posts)
 	return posts
@@ -48,7 +48,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	blog := Blog{Title: "My Blog", Author: "Zoerab Tchahkiev", Header: "Welcome to my blog"}
 	posts := loadPosts()
 	viewModel := BlogViewModel{Blog: blog, Posts: posts}
-	t, _ := template.ParseFiles("blog.html")
+	t, _ := template.ParseFiles("Views/blog.html")
 	t.Execute(w, viewModel)
 }
 
